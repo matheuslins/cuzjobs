@@ -4,6 +4,11 @@
   "scripts": {
   },
   "env": {
+    "DATABASE_URL": "postgres://cxsprlaaypmkrp:2594fb372060eef59e2fcdd99d5101314f22844aef381b0e2f53766da254152f@ec2-54-83-59-144.compute-1.amazonaws.com:5432/df1fnjlv7nv6ob",
+    "DEBUG": False,
+    "DEBUG_COLLECTSTATIC": 1,
+    "DISABLE_COLLECTSTATIC": 1,
+    "WEB_CONCURRENCY": 3
   },
   "formation": {
   },
