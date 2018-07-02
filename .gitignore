@@ -105,11 +105,11 @@ venv.bak/
 
 # Settings Local
 
-cuscuzjobs/settings/local.py
+cuscuzjobs/cuscuzjobs/settings/local.py
 
 old
 
-core/staticfiles
-core/static
-staticfiles
+cuscuzjobs/core/staticfiles
+cuscuzjobs/core/static
+cuscuzjobs/staticfiles
 
