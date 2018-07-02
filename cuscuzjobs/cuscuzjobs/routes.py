@@ -1,9 +1,9 @@
-from .receivers import home
+from cuscuzjobs.views import home
 
 
 routes = [
     {
-        'url': '/',
+        'url': '/api',
         'method': 'GET',
         'handler': home
     }

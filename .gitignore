@@ -102,3 +102,16 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Settings Local
+
+cuscuzjobs/cuscuzjobs/settings/local.py
+
+/old
+
+# Static Files
+
+cuscuzjobs/core/staticfiles
+cuscuzjobs/core/static
+cuscuzjobs/staticfiles
+

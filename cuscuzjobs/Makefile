@@ -35,10 +35,36 @@ pep8:
 	@pep8 --filename="*.py" --ignore=W --first --show-source --statistics --count
 
 deps:
-	pip install -r requirements.txt
+	pip3 install -r requirements.txt
 
 free:
-	pip freeze > requirements.txt
+	pip3 freeze > requirements.txt
 
 run:
-	python manager.py
+	python3 manage.py runserver
+
+setup:
+	python3 manage.py makemigrations
+	python3 manage.py migrate
+
+merge:
+	python3 manage.py makemigrations --merge
+
+user:
+	python3 manage.py createsuperuser
+
+shell:
+	python3 manage.py shell
+
+heroku:
+	git push heroku master
+
+app:
+	python3 manage.py startapp $(n)
+
+migra:
+	python3 manage.py makemigrations $(n)
+	python3 manage.py migrate $(n)
+
+static:
+	python3 manage.py collectstatic
