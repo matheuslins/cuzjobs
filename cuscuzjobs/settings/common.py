@@ -68,18 +68,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'cuscuzjobs.wsgi.application'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': "",
-        'NAME': "",
-        'USER': "",
-        'PASSWORD': "",
-        'HOST': "",
-        'PORT': ""
-    }
-}
-
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
