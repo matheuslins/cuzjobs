@@ -25,6 +25,7 @@ DEFAULT_APPS = [
 ]
 
 PROJECT_APPS = [
+    'account',
     'core',
     'job'
 ]
@@ -125,3 +126,19 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 5000
 # APPLICATION = config('TYPE_APP', cast=str, default='app')
 
 # AP = ASyncApp if APPLICATION == 'async' else App
+
+
+# REST
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
+
+# AUTH
+LOGIN_URL = 'core:login'
+LOGOUT_URL = 'core:logout'
+LOGIN_REDIRECT_URL = 'account:dashboard'
+AUTH_USER_MODEL = 'account.DefaultUser'
