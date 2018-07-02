@@ -5,6 +5,6 @@ from .common import *
 
 ALLOWED_HOSTS = ['*']
 
-DEBUG = False
+DEBUG = True
 
 django_heroku.settings(locals())
