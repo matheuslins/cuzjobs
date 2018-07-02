@@ -41,27 +41,27 @@ free:
 	pip3 freeze > requirements.txt
 
 run:
-	python3 cuscuzjobs/manage.py runserver
+	python3 manage.py runserver
 
 setup:
-	python3 cuscuzjobs/manage.py makemigrations
-	python3 cuscuzjobs/manage.py migrate
+	python3 manage.py makemigrations
+	python3 manage.py migrate
 
 merge:
-	python3 cuscuzjobs/manage.py makemigrations --merge
+	python3 manage.py makemigrations --merge
 
 user:
-	python3 cuscuzjobs/manage.py createsuperuser
+	python3 manage.py createsuperuser
 
 shell:
-	python3 cuscuzjobs/manage.py shell
+	python3 manage.py shell
 
 app:
-	python3 cuscuzjobs/manage.py startapp $(n)
+	python3 manage.py startapp $(n)
 
 migra:
-	python3 cuscuzjobs/manage.py makemigrations $(n)
-	python3 cuscuzjobs/manage.py migrate $(n)
+	python3 manage.py makemigrations $(n)
+	python3 manage.py migrate $(n)
 
 static:
-	python3 cuscuzjobs/manage.py collectstatic
+	python3 manage.py collectstatic
