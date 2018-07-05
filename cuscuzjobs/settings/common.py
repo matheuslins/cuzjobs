@@ -25,9 +25,10 @@ DEFAULT_APPS = [
 ]
 
 PROJECT_APPS = [
-    'account',
     'core',
-    'job'
+    'account',
+    'job',
+    'company'
 ]
 
 THIRD_PARTY_APPS = [

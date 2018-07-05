@@ -5,6 +5,8 @@ from django.conf import settings
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser,
                                         PermissionsMixin)
 
+from company.models import Company
+
 
 class UserManager(BaseUserManager):
 
@@ -85,7 +87,14 @@ class DefaultUser(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = 'Usuários'
 
 
-class CompanyUser(DefaultUser):
+class TechRecruiter(DefaultUser):
+
+    company = models.ForeignKey(
+        Company,
+        on_delete=models.CASCADE,
+        related_name="tech_recruiter_company",
+        verbose_name="Company"
+    )
 
     def __str__(self):
         return str(self.name or "[Not set]") + " -> " + self.email
@@ -97,11 +106,11 @@ class CompanyUser(DefaultUser):
         return str(self)
 
     class Meta:
-        verbose_name = 'Company'
-        verbose_name_plural = 'Companies'
+        verbose_name = 'Tech Recruiter'
+        verbose_name_plural = 'Tech Recruiteis'
 
 
-class JoberUser(DefaultUser):
+class Candidate(DefaultUser):
 
     def __str__(self):
         return str(self.name or "[Not set]") + " -> " + self.email
@@ -113,5 +122,5 @@ class JoberUser(DefaultUser):
         return str(self)
 
     class Meta:
-        verbose_name = 'Jober'
-        verbose_name_plural = 'Jobers'
+        verbose_name = 'Candidate'
+        verbose_name_plural = 'Candidates'
