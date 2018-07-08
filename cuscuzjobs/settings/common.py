@@ -2,8 +2,8 @@ import os
 
 from decouple import config
 
-BASE_DIR = os.path.dirname(os.path.dirname(
-        os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 SECRET_KEY = config('SECRET_KEY', cast=str)
 
@@ -33,7 +33,8 @@ PROJECT_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
-    'rolepermissions'
+    'rolepermissions',
+    'webpack_loader'
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + PROJECT_APPS + THIRD_PARTY_APPS
@@ -54,7 +55,9 @@ ROOT_URLCONF = 'cuscuzjobs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, "templates"),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -99,19 +102,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'core/staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'frontend', 'staticfiles')
 
 STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'core/static'),
+    os.path.join(BASE_DIR, 'frontend', 'static'),
 )
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 5000
@@ -143,3 +146,11 @@ LOGIN_URL = 'core:login'
 LOGOUT_URL = 'core:logout'
 LOGIN_REDIRECT_URL = 'account:dashboard'
 AUTH_USER_MODEL = 'account.DefaultUser'
+
+# REACT
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
+    }
+}
