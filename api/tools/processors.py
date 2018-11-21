@@ -1,3 +1,5 @@
+import numpy as np
+
 
 def catch_columns(columns, frame):
     list_column = []
