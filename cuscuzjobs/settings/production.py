@@ -12,7 +12,7 @@ DATABASES = {
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
-DEBUG = True
+DEBUG = False
 
-SECRET_KEY = 'bn23y457h-23784tb34nf-347f'
+SECRET_KEY = config('SECRET_KEY', cast=str)
 
