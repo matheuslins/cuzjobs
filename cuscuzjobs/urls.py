@@ -8,5 +8,8 @@ urlpatterns = [
         ('account.urls', 'account'), namespace='account')),
     path('job/', include(
         ('job.urls', 'account'), namespace='job')),
+    path('oauth/', include('social_django.urls', namespace='social')),
+
     path('admin/', admin.site.urls)
+
 ]
