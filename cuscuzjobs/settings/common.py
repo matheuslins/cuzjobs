@@ -141,11 +141,9 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 5000
 
 
 # LOGIN
-# LOGIN_URL = 'accounts:account_login'
-# LOGOUT_URL = 'accounts:account_logout'
 LOGIN_REDIRECT_URL = 'users_auth:dashboard'
-# LOGOUT_REDIRECT_URL = 'account_login'
-# LOGIN_REDIRECT_URL = 'home'
+# LOGOUT_REDIRECT_URL = 'core:'
+
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 
