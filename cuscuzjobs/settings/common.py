@@ -19,38 +19,27 @@ DEFAULT_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles'
+    'django.contrib.staticfiles',
+    'django.contrib.sites'
 ]
 
 PROJECT_APPS = [
-    'core',
-    'account',
     'job',
-    'company'
+    'core',
+    'company',
+    'users_auth',
 ]
 
 THIRD_PARTY_APPS = [
     'rest_framework',
     'rolepermissions',
     # 'webpack_loader',
-    'social_django'
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
 ]
-
-INSTALLED_APPS = DEFAULT_APPS + PROJECT_APPS + THIRD_PARTY_APPS
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'social_django.middleware.SocialAuthExceptionMiddleware'
-]
-
-ROOT_URLCONF = 'cuscuzjobs.urls'
 
 TEMPLATES = [
     {
@@ -66,12 +55,39 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect'
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+INSTALLED_APPS = DEFAULT_APPS + PROJECT_APPS + THIRD_PARTY_APPS
+
+# AUTH
+AUTH_USER_MODEL = 'users_auth.DefaultUser'
+
+SITE_ID = 2
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
+
+]
+
+ROOT_URLCONF = 'cuscuzjobs.urls'
+
 
 WSGI_APPLICATION = 'cuscuzjobs.wsgi.application'
 
@@ -124,43 +140,21 @@ STATICFILES_DIRS = (
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 5000
 
 
-# API STAR
-# from apistar import ASyncApp, App
-
-# APISTAR_SETTINGS = {
-#     'ALLOWED_DJANGO_ROUTES': ('/admin/', '/static/', '/')
-# }
-
-# APPLICATION = config('TYPE_APP', cast=str, default='app')
-
-# AP = ASyncApp if APPLICATION == 'async' else App
-
-
-# SOCIAL AUTH
-AUTHENTICATION_BACKENDS = (
-    'social_core.backends.github.GithubOAuth2',
-
-    'django.contrib.auth.backends.ModelBackend',
-)
-
-SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY', cast=str)
-SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET', cast=str)
-
+# LOGIN
+# LOGIN_URL = 'accounts:account_login'
+# LOGOUT_URL = 'accounts:account_logout'
+LOGIN_REDIRECT_URL = 'users_auth:dashboard'
+# LOGOUT_REDIRECT_URL = 'account_login'
+# LOGIN_REDIRECT_URL = 'home'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
 
 # REST
-
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
-
-
-# AUTH
-LOGIN_URL = 'core:login'
-LOGOUT_URL = 'core:logout'
-LOGIN_REDIRECT_URL = 'account:dashboard'
-AUTH_USER_MODEL = 'account.DefaultUser'
 
 # REACT
 WEBPACK_LOADER = {

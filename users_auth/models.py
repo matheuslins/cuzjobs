@@ -43,11 +43,12 @@ class DefaultUser(AbstractBaseUser, PermissionsMixin):
 
     name = models.CharField('Nome', max_length=100, blank=True, null=True)
     image = models.ImageField(
-        upload_to='account_auth/images',
+        upload_to='users_auth/images',
         verbose_name='Imagem',
         null=True,
         blank=True
     )
+    username = models.CharField('Username', max_length=100, blank=True, null=True)
     email = models.EmailField('E-mail', unique=True)
     is_active = models.BooleanField('Está ativo?', blank=True, default=True)
     is_staff = models.BooleanField('É da equipe?', blank=True, default=False)
