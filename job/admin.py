@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Job, JobCandidate
+from .models import Job
+from .models import JobCandidate
 
 
 class JobAdmin(admin.ModelAdmin):

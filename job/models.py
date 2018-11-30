@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
 from company.models import Company
-from account.models import Candidate
+from users_auth.models import Candidate
 
 
 class Job(models.Model):
