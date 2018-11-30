@@ -43,7 +43,7 @@ class DefaultUser(AbstractBaseUser, PermissionsMixin):
 
     name = models.CharField('Nome', max_length=100, blank=True, null=True)
     image = models.ImageField(
-        upload_to='account/images',
+        upload_to='account_auth/images',
         verbose_name='Imagem',
         null=True,
         blank=True
@@ -68,16 +68,6 @@ class DefaultUser(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         # The user is identified by their email address
         return self.name
-
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
-
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
-        return True
 
     def __unicode__(self):
         return u"name: %s " % (self.name or u'')

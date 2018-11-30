@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% block title %}<title>Início</title>{% endblock %}
+</head>
+
+<body>
+  {% block content %}
+  <h1>Dashboard</h1>
+  <h2>Bem vindo, {{user.username}}</h2>
+  <a href="{% url 'core:logout' %}">Sair</a>
+  {% endblock %}
+</body>
+
+{% block script %}
+{{block.super}}
+{% endblock %}
+</html>
