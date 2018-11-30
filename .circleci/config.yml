@@ -22,10 +22,10 @@ jobs:
       - run:
           name: Setting DataBase
           command: |
-            pipenv run "make migra n=users_auth"
-            pipenv run "make migra n=job"
-            pipenv run "make migra n=company"
             pipenv run "make setup"
+            pipenv run "make migra n=users_auth"
+            pipenv run "make migra n=company"
+            pipenv run "make migra n=job"
 
       - run:
           name: Tests
