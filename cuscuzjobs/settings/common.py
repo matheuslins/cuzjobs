@@ -27,6 +27,7 @@ PROJECT_APPS = [
     'job',
     'core',
     'company',
+    'repository',
     'users_auth',
 ]
 
