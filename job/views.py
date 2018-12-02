@@ -25,7 +25,7 @@ class CreateJobAPI(CreateListMixin, generics.CreateAPIView):
 
 class ListJobAPI(generics.ListAPIView):
     serializer_class = JobSerializer
-    queryset = Job.objects.all()
+
 
 
 class RetrieveUpdateJobAPI(generics.RetrieveUpdateAPIView):

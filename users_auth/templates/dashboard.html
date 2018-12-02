@@ -10,8 +10,17 @@
   {% block content %}
   <h1>Dashboard</h1>
   <h2>Bem vindo, {{user.username}}</h2>
-  <a href="{% url 'account_logout' %}">Sair</a>
+
+  <p>Suas Top Linguagens</p>
+
+  <ul>
+    {% for language, number in top_languages %}
+      <li>{{language}} - {{number}}</li>
+    {% endfor %}
+  </ul>
   {% endblock %}
+
+  <a href="{% url 'account_logout' %}">Sair</a>
 </body>
 
 {% block script %}

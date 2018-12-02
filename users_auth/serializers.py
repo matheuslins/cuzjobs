@@ -1,4 +1,0 @@
-
-
-class JobSerializer(object):
-    pass

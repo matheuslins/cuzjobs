@@ -1,0 +1,1 @@
+REPOS_URL = 'https://api.github.com/users/{user}/repos?client_id={id}&client_secret={secret}'.format
