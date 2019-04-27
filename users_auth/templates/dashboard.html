@@ -10,8 +10,45 @@
   {% block content %}
   <h1>Dashboard</h1>
   <h2>Bem vindo, {{user.username}}</h2>
-  <a href="{% url 'account_logout' %}">Sair</a>
+
+  <p>Suas Top Linguagens</p>
+
+  <ul>
+    {% for language, number in top_languages %}
+      <li>{{language}} - {{number.0}}, {{number.1}}</li>
+    {% endfor %}
+  </ul>
+
+  <p>Seu score a cada linguagem</p>
+
+  <ul>
+    {% for language, score in score_lang.items %}
+      <li>{{language}} - {{score}}</li>
+    {% endfor %}
+  </ul>
+
+  <p>Seu nível a cada linguagem</p>
+
+  <ul>
+    {% for language, level in level_lang.items %}
+      <li>{{language}} - {{level}}</li>
+    {% endfor %}
+  </ul>
+
+
+    <p>Jobs para voce</p>
+
+  <ul>
+    {% for lang, jobs in jobs_by_lanquages.items %}
+      <h3>{{lang}}</h3>
+      {% for job in jobs %}
+        <li><a href="{{job.url}}">{{job.title}}</a> - {{job.location}}</li>
+      {% endfor %}
+    {% endfor %}
+  </ul>
   {% endblock %}
+
+  <a href="{% url 'account_logout' %}">Sair</a>
 </body>
 
 {% block script %}
