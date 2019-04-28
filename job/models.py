@@ -59,7 +59,7 @@ class JobCandidate(models.Model):
 
     def __str__(self):
         return str(
-            self.job._id or "[Not set]") + '->' + str(
+            self.job.job_id or "[Not set]") + '->' + str(
                 self.candidate.name or "[Not set]")
 
     class Meta:
