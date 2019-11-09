@@ -135,35 +135,41 @@ class DashboardView(ListView):
 
         return score_languages
 
-    def get_repos_user(self, user):
+    @staticmethod
+    def get_repos_user(user):
         return Repository.objects.filter(owner__login=user)
 
     def get(self, request, *args, **kwargs):
         user = request.user.username
-        repos_user = self.get_repos_user(user)
+        if user:
+            repos_user = self.get_repos_user(user)
 
-        if not repos_user.exists():
-            repos = requests.get(REPOS_URL(user=user, id=config('GITHUB_KEY'), secret=config('GITHUB_SECRET')))
-            for repo in repos.json():
-                url_languages = furl(repo.get('languages_url')).add(self.auth_keys).url
-                languages_stats = requests.get(url_languages).json()
-                score_languages = self.iter_by_lang_repo(languages_stats, user, repo)
-                self.create_repo(repo, languages_stats, score_languages)
+            if not repos_user.exists():
+                repos = requests.get(REPOS_URL(user=user, id=config('GITHUB_KEY'), secret=config('GITHUB_SECRET')))
+                for repo in repos.json():
+                    url_languages = furl(repo.get('languages_url')).add(self.auth_keys).url
+                    languages_stats = requests.get(url_languages).json()
+                    score_languages = self.iter_by_lang_repo(languages_stats, user, repo)
+                    self.create_repo(repo, languages_stats, score_languages)
 
-        else:
-            self.languages_infos = {}
-            for repo in repos_user:
-                if not repo.fork:
-                    languages_stats = repo.score_languages
-                    [self.languages_infos.setdefault(language, []).append(stat) \
-                            for language, stat in languages_stats.items()]
+            else:
+                self.languages_infos = {}
+                for repo in repos_user:
+                    if not repo.fork:
+                        languages_stats = repo.score_languages
+                        [self.languages_infos.setdefault(language, []).append(stat) \
+                                for language, stat in languages_stats.items()]
 
-        self.context.update(self.get_top_language())
-        # calculate user level
-        self.set_lang_level_by_skill(user)
-        self.object_list = self._queryset()
-        context = self.get_context_data()
-        context.update(self.context)
+            self.context.update(self.get_top_language())
+            # calculate user level
+            self.set_lang_level_by_skill(user)
+            self.object_list = self._queryset()
+            context = self.get_context_data()
+            context.update(self.context)
+            return self.render_to_response(context)
+
+        context = self.get_context_data(object_list=[])
+
         return self.render_to_response(context)
 
     def create_repo(self, repo, languages_stats, score_languages):

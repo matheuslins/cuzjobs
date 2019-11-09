@@ -35,8 +35,6 @@ class Repository(models.Model):
     def __str__(self):
         return str(self.name or "[Not set]")
 
-
-
     class Meta:
         verbose_name = 'Repository'
         verbose_name_plural = 'Repositories'
