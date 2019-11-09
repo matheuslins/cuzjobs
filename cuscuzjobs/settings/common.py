@@ -123,15 +123,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 5000
-
 
 # LOGIN
 LOGIN_REDIRECT_URL = 'users_auth:dashboard'
