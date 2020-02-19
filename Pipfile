@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+django = "*"
+python-decouple = "*"
+dj-database-url = "*"
+djangorestframework = "*"
+django-role-permissions = "*"
+django-allauth = "*"
+psycopg2-binary = "*"
+pillow = "*"
+furl = "*"
+jsonfield = "*"
+
+[requires]
+python_version = "3.7"

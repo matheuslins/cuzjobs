@@ -1,7 +1,5 @@
 import os
 
-from decouple import config
-
 BASE_DIR = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -27,19 +25,20 @@ PROJECT_APPS = [
     'job',
     'core',
     'company',
+    'repository',
     'users_auth',
 ]
 
 THIRD_PARTY_APPS = [
     'rest_framework',
     'rolepermissions',
-    # 'webpack_loader',
-
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
 ]
+
+INSTALLED_APPS = DEFAULT_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 TEMPLATES = [
     {
@@ -68,12 +67,11 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-INSTALLED_APPS = DEFAULT_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 # AUTH
 AUTH_USER_MODEL = 'users_auth.DefaultUser'
 
-SITE_ID = 2
+SITE_ID = 3
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -110,18 +108,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'America/Recife'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
-
-# STATIC_ROOT = os.path.join(BASE_DIR, 'frontend', 'staticfiles')
 
 STATIC_URL = '/static/'
 
@@ -130,19 +123,10 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 5000
-
 
 # LOGIN
 LOGIN_REDIRECT_URL = 'users_auth:dashboard'
-# LOGOUT_REDIRECT_URL = 'core:'
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
@@ -152,13 +136,4 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
-}
-
-# REACT
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': os.path.join(
-            BASE_DIR, 'frontend', 'webpack-stats-dev.json'),
-    }
 }
