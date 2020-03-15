@@ -16,6 +16,7 @@ psycopg2-binary = "*"
 pillow = "*"
 furl = "*"
 jsonfield = "*"
+whitenoise = "*"
 gunicorn = "*"
 
 [requires]
