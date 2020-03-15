@@ -18,7 +18,7 @@ furl = "*"
 jsonfield = "*"
 whitenoise = "*"
 gunicorn = "*"
-
+dj-config-url = "*"
 
 [requires]
 python_version = "3.8"
