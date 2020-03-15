@@ -12,7 +12,7 @@ DATABASES = {
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
-DEBUG = config('DEBUG')
+DEBUG = config('DEBUG', cast=bool)
 
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 
