@@ -14,5 +14,7 @@ DATABASES['default'].update(db_from_env)
 
 DEBUG = config('DEBUG')
 
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+
 SECRET_KEY = config('SECRET_KEY', cast=str)
 
