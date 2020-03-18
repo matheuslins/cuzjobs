@@ -1,0 +1,70 @@
+{% extends "account/base.html" %}
+
+{% load static %}
+{% load socialaccount %}
+{% load i18n %}
+{% load account socialaccount %}
+
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+    {% get_providers as socialaccount_providers %}
+
+    <!-- Header -->
+    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+        <div class="container">
+            <div class="header-body text-center mb-7">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-6 col-md-8 px-5">
+                        <h1 class="text-white">Bem Vindo ao CuscuzJobs!</h1>
+                        <p class="text-lead text-white">A Plataforma onde você encontra a melhor oportunidade de emprego
+                            baseada no seu perfil do GitHub</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separator separator-bottom separator-skew zindex-100">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+                 xmlns="http://www.w3.org/2000/svg">
+                <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="container mt--8 pb-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7">
+                    <div class="card bg-secondary border-0 mb-0">
+                        <div class="card-header bg-transparent pb-5">
+                            <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
+                            <div class="btn-wrapper text-center">
+                                {% for provider in socialaccount_providers %}
+                                    {% if provider.id == "openid" %}
+                                        {% for brand in provider.get_brands %}
+                                            <li>
+                                                <a title="{{ brand.name }}"
+                                                   class="socialaccount_provider {{ provider.id }} {{ brand.id }}"
+                                                   href="{% provider_login_url provider.id openid=brand.openid_url process=process %}"
+                                                >{{ brand.name }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    {% endif %}
+                                    <a href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"
+                                       class="btn btn-neutral btn-icon">
+                                        <span class="btn-inner--icon">
+                                            <img src="{% static "assets/img/icons/common/github.svg" %}">
+                                        </span>
+                                        <span class="btn-inner--text">{{ provider.name }}</span>
+                                    </a>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

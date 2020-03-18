@@ -41,6 +41,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, "templates"),
+            os.path.join(BASE_DIR, 'templates', 'allauth')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -116,7 +117,7 @@ USE_TZ = True
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 5000
 
 # LOGIN
-LOGIN_REDIRECT_URL = 'users_auth:dashboard'
+LOGIN_REDIRECT_URL = 'auth:dashboard'
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False

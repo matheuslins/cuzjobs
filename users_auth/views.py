@@ -105,7 +105,7 @@ class DashboardView(ListView):
             result = {language: (score_lang, len(numbers))}
             top_languages.update(result)
         return {
-            'top_languages': sorted(top_languages.items(), key=operator.itemgetter(1), reverse=True)
+            'top_languages': list(sorted(top_languages.items(), key=operator.itemgetter(1), reverse=True))[:4]
         }
 
     def iter_by_lang_repo(self, languages_stats, user, repo):
