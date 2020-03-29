@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import CreateJobAPI, ListJobAPI, RetrieveUpdateJobAPI
+from .views import CreateJobAPI, AllJobsHandler, RetrieveUpdateJobAPI, JobsNextToYouHandler
 
 
 urlpatterns = [
@@ -12,8 +12,12 @@ urlpatterns = [
          CreateJobAPI.as_view(),
          name='create'
     ),
-    path('list/',
-        ListJobAPI.as_view(),
-        name='list'
+    path('all-jobs/',
+         AllJobsHandler.as_view(),
+         name='all_jobs'
+    ),
+    path('next-to-you/',
+         JobsNextToYouHandler.as_view(),
+         name='next_to_you'
     )
 ]

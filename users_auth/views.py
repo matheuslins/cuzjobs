@@ -68,7 +68,7 @@ class DashboardView(ListView):
             score = int(sum(pondera) / len(pondera))
             score_lang.update({lang: score})
 
-        self.context.update({'score_lang': score_lang})
+        self.context.update({'score_lang': list(sorted(score_lang.items(), key=operator.itemgetter(1), reverse=True))[:4]})
         self.context.update({'level_lang': self.set_level(score_lang)})
 
     def set_level(self, score_lang):
@@ -89,12 +89,12 @@ class DashboardView(ListView):
         return level_lang
 
     def _queryset(self):
-        jobs_by_lanquages = {}
+        jobs_by_languages = {}
         languages = self.context['top_languages']
         for language in languages:
             jobs_found = Job.objects.filter(tecnologies__contains=[language[0].lower()])
-            [jobs_by_lanquages.setdefault(language[0], []).append(job) for job in jobs_found]
-        filter_query_set = {'jobs_by_lanquages': jobs_by_lanquages}
+            [jobs_by_languages.setdefault(language[0], []).append(job) for job in jobs_found]
+        filter_query_set = {'jobs_by_languages': jobs_by_languages}
         return self.context.update(filter_query_set)
 
     def get_top_language(self):
@@ -157,8 +157,10 @@ class DashboardView(ListView):
                 for repo in repos_user:
                     if not repo.fork:
                         languages_stats = repo.score_languages
-                        [self.languages_infos.setdefault(language, []).append(stat) \
-                                for language, stat in languages_stats.items()]
+                        [
+                            self.languages_infos.setdefault(language, []).append(stat)
+                            for language, stat in languages_stats.items()
+                        ]
 
             self.context.update(self.get_top_language())
             # calculate user level
@@ -209,3 +211,22 @@ class DashboardView(ListView):
         repository = Repository.objects.filter(**payload_repo)
         if not repository:
             Repository.objects.create(**payload_repo)
+
+
+class ProfileReport(ListView):
+    template_name = "profile_report.html"
+    context = {}
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.object_list = self._queryset()
+
+    @staticmethod
+    def _queryset():
+        return Job.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        self.context.update({
+            'jobs': self.object_list
+        })
+        return self.render_to_response(self.context)

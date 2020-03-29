@@ -1,0 +1,31 @@
+{% extends 'intern_base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block title %}<title>Jobs Next to You</title>{% endblock %}
+
+</head>
+
+<body>
+
+{% block breadcrumb_items %}
+      <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+          <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+          <li class="breadcrumb-item"><a href="{% url 'auth:dashboard' %}">Dashboard</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Jobs Next to You</li>
+        </ol>
+      </nav>
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+
+{% block script %}
+    {{ block.super }}
+{% endblock %}
+</html>

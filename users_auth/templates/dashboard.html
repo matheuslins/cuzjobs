@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'intern_base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,225 +8,148 @@
 </head>
 
 <body>
-{% block content %}
-    {% include "includes/sidenav.html" %}
-    <!-- Main content -->
-    <div class="main-content" id="panel">
-        <!-- Topnav -->
-        {% include "includes/topnav.html" %}
-        <!-- Header -->
-        <!-- Header -->
-        <div class="header bg-primary pb-6">
-            <div class="container-fluid">
-                <div class="header-body">
-                    <div class="row align-items-center py-4">
-                        <div class="col-lg-6 col-7">
-                            <h6 class="h2 text-white d-inline-block mb-0">Your trend languages</h6>
-                        </div>
-                        <div class="col-lg-6 col-5 text-right">
-                            <a href="#" class="btn btn-sm btn-neutral">Reload</a>
-                        </div>
-                    </div>
-                    <!-- Card stats -->
-                    <div class="row">
-                        {% for language, number in top_languages %}
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card card-stats">
-                                    <!-- Card body -->
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">{{ language }}</h5>
-                                                <span class="h2 font-weight-bold mb-0">{{ number.0 }} - {{ number.1 }}</span>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                                                    <i class="ni ni-active"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
+{% block breadcrumb_items %}
+    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+        </ol>
+    </nav>
+{% endblock %}
+{% block breadcrumb_content %}
+    <!-- Card stats -->
+    <div class="row">
+        {% for lang in score_lang %}
+            <div class="col-xl-3 col-md-6">
+                <div class="card card-stats">
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">{{ lang.0 }}</h5>
+                                <span class="h2 font-weight-bold mb-0">{{ lang.1 }}</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+                                    <i class="ni ni-chart-pie-35"></i>
                                 </div>
                             </div>
-                        {% endfor %}
+                        </div>
+                        <p class="mt-3 mb-0 text-sm">
+                            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                            <span class="text-nowrap">Since last month</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
 
-                        {#                        <div class="col-xl-3 col-md-6">#}
-                        {#                            <div class="card card-stats">#}
-                        {#                                <!-- Card body -->#}
-                        {#                                <div class="card-body">#}
-                        {#                                    <div class="row">#}
-                        {#                                        <div class="col">#}
-                        {#                                            <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>#}
-                        {#                                            <span class="h2 font-weight-bold mb-0">2,356</span>#}
-                        {#                                        </div>#}
-                        {#                                        <div class="col-auto">#}
-                        {#                                            <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">#}
-                        {#                                                <i class="ni ni-chart-pie-35"></i>#}
-                        {#                                            </div>#}
-                        {#                                        </div>#}
-                        {#                                    </div>#}
-                        {#                                    <p class="mt-3 mb-0 text-sm">#}
-                        {#                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>#}
-                        {#                                        <span class="text-nowrap">Since last month</span>#}
-                        {#                                    </p>#}
-                        {#                                </div>#}
-                        {#                            </div>#}
-                        {#                        </div>#}
-                        {#                        <div class="col-xl-3 col-md-6">#}
-                        {#                            <div class="card card-stats">#}
-                        {#                                <!-- Card body -->#}
-                        {#                                <div class="card-body">#}
-                        {#                                    <div class="row">#}
-                        {#                                        <div class="col">#}
-                        {#                                            <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>#}
-                        {#                                            <span class="h2 font-weight-bold mb-0">924</span>#}
-                        {#                                        </div>#}
-                        {#                                        <div class="col-auto">#}
-                        {#                                            <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">#}
-                        {#                                                <i class="ni ni-money-coins"></i>#}
-                        {#                                            </div>#}
-                        {#                                        </div>#}
-                        {#                                    </div>#}
-                        {#                                    <p class="mt-3 mb-0 text-sm">#}
-                        {#                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>#}
-                        {#                                        <span class="text-nowrap">Since last month</span>#}
-                        {#                                    </p>#}
-                        {#                                </div>#}
-                        {#                            </div>#}
-                        {#                        </div>#}
-                        {#                        <div class="col-xl-3 col-md-6">#}
-                        {#                            <div class="card card-stats">#}
-                        {#                                <!-- Card body -->#}
-                        {#                                <div class="card-body">#}
-                        {#                                    <div class="row">#}
-                        {#                                        <div class="col">#}
-                        {#                                            <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>#}
-                        {#                                            <span class="h2 font-weight-bold mb-0">49,65%</span>#}
-                        {#                                        </div>#}
-                        {#                                        <div class="col-auto">#}
-                        {#                                            <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">#}
-                        {#                                                <i class="ni ni-chart-bar-32"></i>#}
-                        {#                                            </div>#}
-                        {#                                        </div>#}
-                        {#                                    </div>#}
-                        {#                                    <p class="mt-3 mb-0 text-sm">#}
-                        {#                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>#}
-                        {#                                        <span class="text-nowrap">Since last month</span>#}
-                        {#                                    </p>#}
-                        {#                                </div>#}
-                        {#                            </div>#}
-                        {#                        </div>#}
+{% block content %}
+    <div class="container-fluid mt--6">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header border-0">
+                        <h3 class="mb-0">Jobs for you</h3>
                     </div>
-                </div>
-                <div class="row align-items-center py-4">
-                    <div class="col-lg-6 col-7">
-                        <h6 class="h2 text-white d-inline-block mb-0">Top 5 Jobs for you today</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <!-- Light table -->
-                            <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
-                                    <thead class="thead-light">
+                    <!-- Light table -->
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col" class="sort" data-sort="title">Title</th>
+                                <th scope="col" class="sort" data-sort="salary">Salary</th>
+                                <th scope="col" class="sort" data-sort="location">Location</th>
+                                <th scope="col">Company</th>
+                                <th scope="col" class="sort" data-sort="link">Link to Apply<</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody class="list">
+                            {% for lang, jobs in jobs_by_languages.items %}
+                                {% for job in jobs %}
                                     <tr>
-                                        <th scope="col" class="sort" data-sort="name">Title</th>
-                                        <th scope="col" class="sort" data-sort="budget">Salary</th>
-                                        <th scope="col" class="sort" data-sort="status">Location</th>
-                                        <th scope="col">Company</th>
-                                        <th scope="col" class="sort" data-sort="completion">Match with your profile</th>
-                                        <th scope="col" class="sort" data-sort="completion">Link to Apply</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="list">
-                                    {% for lang, jobs in jobs_by_lanquages.items %}
-                                        {% for job in jobs %}
-                                            <tr>
-                                                <th scope="row">
-                                                    <div class="media align-items-center">
-                                                        <img alt="Image placeholder"
-                                                             src="../assets/img/theme/bootstrap.jpg"
-                                                             class="avatar rounded-circle mr-3">
-                                                        <div class="media-body">
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+                                                <img alt="Image placeholder"
+                                                     src="../assets/img/theme/bootstrap.jpg"
+                                                     class="avatar rounded-circle mr-3">
+                                                <div class="media-body">
                                                                 <span class="name mb-0 text-sm"><a href="{{ job.url }}"
                                                                                                    target="_blank">
                                                                     {{ job.title }}</a>
                                                                 </span>
-                                                        </div>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="budget">
+                                            {{ job.salary }}
+                                        </td>
+                                        <td>
+                                            {{ job.location }}
+                                        </td>
+                                        <td>
+                                            {{ job.company }}
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <span class="completion mr-2">60%</span>
+                                                <div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-warning" role="progressbar"
+                                                             aria-valuenow="60" aria-valuemin="0"
+                                                             aria-valuemax="100"
+                                                             style="width: 60%;"></div>
                                                     </div>
-                                                </th>
-                                                <td class="budget">
-                                                    {{ job.salary }}
-                                                </td>
-                                                <td>
-                                                    {{ job.location }}
-                                                </td>
-                                                <td>
-                                                    {{ job.company }}
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <span class="completion mr-2">60%</span>
-                                                        <div>
-                                                            <div class="progress">
-                                                                <div class="progress-bar bg-warning" role="progressbar"
-                                                                     aria-valuenow="60" aria-valuemin="0"
-                                                                     aria-valuemax="100"
-                                                                     style="width: 60%;"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="col-lg-6 col-5 text-right">
-                                                        <a href="{{ job.link_apply }}" class="btn btn-sm btn-neutral" target="_blank">Go</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col-lg-6 col-5 text-right">
+                                                <a href="{{ job.link_apply }}" class="btn btn-sm btn-neutral"
+                                                   target="_blank">Go</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Card footer -->
+                    <div class="card-footer py-4">
+                        <nav aria-label="...">
+                            <ul class="pagination justify-content-end mb-0">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">
+                                        <i class="fas fa-angle-left"></i>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <i class="fas fa-angle-right"></i>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
-
         </div>
-        <!-- Page content -->
     </div>
-    {#  <h1>Dashboard</h1>#}
-    {#  <h2>Bem vindo, {{user.username}}</h2>#}
-    {##}
-    {#  <p>Suas Top Linguagens</p>#}
-    {##}
-    {#  <ul>#}
-    {#  </ul>#}
-    {##}
-    {#  <p>Seu score a cada linguagem</p>#}
-    {##}
-    {#  <ul>#}
-    {#    {% for language, score in score_lang.items %}#}
-    {#      <li>{{language}} - {{score}}</li>#}
-    {#    {% endfor %}#}
-    {#  </ul>#}
-    {##}
-    {#  <p>Seu nível a cada linguagem</p>#}
-    {##}
-    {#  <ul>#}
-    {#    {% for language, level in level_lang.items %}#}
-    {#      <li>{{language}} - {{level}}</li>#}
-    {#    {% endfor %}#}
-    {#  </ul>#}
-    {##}
-    {##}
-    {#    <p>Jobs para voce</p>#}
-    {##}
-    {#  <ul>#}
-
-    {#  </ul>#}
 {% endblock %}
 
 </body>

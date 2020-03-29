@@ -1,4 +1,20 @@
 @charset 'UTF-8';
+/*!
+
+=========================================================
+* Argon Dashboard - v1.2.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2020 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
+
+* Coded by www.creative-tim.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
 */
 :root
 {
@@ -26435,6 +26451,66 @@ table.dataTable tbody > tr.selected
     {
         transition: none;
     }
+}
+
+[data-calendar-month='0']
+{
+    background-image: url('../img/calendar/january.jpg');
+}
+
+[data-calendar-month='1']
+{
+    background-image: url('../img/calendar/february.jpg');
+}
+
+[data-calendar-month='2']
+{
+    background-image: url('../img/calendar/march.jpg');
+}
+
+[data-calendar-month='3']
+{
+    background-image: url('../img/calendar/april.jpg');
+}
+
+[data-calendar-month='4']
+{
+    background-image: url('../img/calendar/may.jpg');
+}
+
+[data-calendar-month='5']
+{
+    background-image: url('../img/calendar/june.jpg');
+}
+
+[data-calendar-month='6']
+{
+    background-image: url('../img/calendar/july.jpg');
+}
+
+[data-calendar-month='7']
+{
+    background-image: url('../img/calendar/august.jpg');
+}
+
+[data-calendar-month='8']
+{
+    background-image: url('../img/calendar/september.jpg');
+}
+
+[data-calendar-month='9']
+{
+    background-image: url('../img/calendar/october.jpg');
+}
+
+[data-calendar-month='10']
+{
+    background-image: url('../img/calendar/november.jpg');
+}
+
+[data-calendar-month='11']
+{
+    background-image: url('../img/calendar/december.jpg');
 }
 
 .card-calendar .card-header
