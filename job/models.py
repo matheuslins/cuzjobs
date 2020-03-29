@@ -20,9 +20,9 @@ class Job(models.Model):
         models.CharField(max_length=200, verbose_name='Benefits'),
         blank=True, null=True
     )
-    tecnologies = ArrayField(models.CharField(max_length=200, verbose_name='Tecnologies'), blank=True, null=True)
+    technologies = ArrayField(models.CharField(max_length=200, verbose_name='Technologies'), blank=True, null=True)
     location = models.CharField(max_length=100, verbose_name='Location', null=True, blank=True)
-    experience_level = models.CharField(max_length=100, verbose_name='Experience Lvel', null=True, blank=True)
+    experience_level = models.CharField(max_length=100, verbose_name='Experience Level', null=True, blank=True)
     role = models.CharField(max_length=100, verbose_name='Role', null=True, blank=True)
     industry = models.CharField(max_length=100, verbose_name='Industry', null=True, blank=True)
     salary = models.CharField(max_length=100, verbose_name='salary', null=True, blank=True)

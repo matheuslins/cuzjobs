@@ -93,7 +93,7 @@ class DashboardView(ListView):
         jobs_by_languages = {}
         languages = self.context['top_languages']
         for language in languages:
-            jobs_found = Job.objects.filter(tecnologies__contains=[language[0].lower()])
+            jobs_found = Job.objects.filter(technologies__contains=[language[0].lower()])
             [jobs_by_languages.setdefault(language[0], []).append(job) for job in jobs_found]
         filter_query_set = {'jobs_by_languages': jobs_by_languages}
         self.context.update(filter_query_set)
