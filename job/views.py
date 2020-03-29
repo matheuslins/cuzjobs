@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
+from django.views.generic import ListView
 
 from core.mixins import CreateListMixin
 from .serializer import JobSerializer
@@ -23,8 +24,42 @@ class CreateJobAPI(CreateListMixin, generics.CreateAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
-class ListJobAPI(generics.ListAPIView):
-    serializer_class = JobSerializer
+class AllJobsHandler(ListView):
+    template_name = "all_jobs.html"
+    context = {}
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.object_list = self._queryset()
+
+    @staticmethod
+    def _queryset():
+        return Job.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        self.context.update({
+            'jobs': self.object_list
+        })
+        return self.render_to_response(self.context)
+
+
+class JobsNextToYouHandler(ListView):
+    template_name = "next_to_you.html"
+    context = {}
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.object_list = self._queryset()
+
+    @staticmethod
+    def _queryset():
+        return Job.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        self.context.update({
+            'nextToJobs': self.object_list
+        })
+        return self.render_to_response(self.context)
 
 
 class RetrieveUpdateJobAPI(generics.RetrieveUpdateAPIView):
