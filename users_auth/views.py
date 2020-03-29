@@ -19,6 +19,10 @@ class DashboardView(ListView):
     user_level = ''
     languages_infos = {}
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.object_list = self._queryset()
+
     def set_lang_level_by_skill(self, user):
         score_lang = {}
         metrics = {}
@@ -95,7 +99,8 @@ class DashboardView(ListView):
             jobs_found = Job.objects.filter(tecnologies__contains=[language[0].lower()])
             [jobs_by_languages.setdefault(language[0], []).append(job) for job in jobs_found]
         filter_query_set = {'jobs_by_languages': jobs_by_languages}
-        return self.context.update(filter_query_set)
+        self.context.update(filter_query_set)
+        return self.context
 
     def get_top_language(self):
         top_languages = {}
@@ -163,11 +168,10 @@ class DashboardView(ListView):
                         ]
 
             self.context.update(self.get_top_language())
-            # calculate user level
             self.set_lang_level_by_skill(user)
-            self.object_list = self._queryset()
             context = self.get_context_data()
             context.update(self.context)
+
             return self.render_to_response(context)
 
         context = self.get_context_data(object_list=[])
