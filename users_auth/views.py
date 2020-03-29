@@ -18,10 +18,7 @@ class DashboardView(ListView):
     auth_keys = {'client_id': config('GITHUB_KEY'), 'client_secret': config('GITHUB_SECRET')}
     user_level = ''
     languages_infos = {}
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.object_list = self._queryset()
+    object_list = []
 
     def set_lang_level_by_skill(self, user):
         score_lang = {}
@@ -169,6 +166,7 @@ class DashboardView(ListView):
 
             self.context.update(self.get_top_language())
             self.set_lang_level_by_skill(user)
+            self.object_list = self._queryset()
             context = self.get_context_data()
             context.update(self.context)
 
