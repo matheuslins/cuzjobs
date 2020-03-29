@@ -15,31 +15,15 @@
   </head>
 
   <body>
-    {% include "includes/sidenav.html" %}
+
+    {% block includes %}
+    {% endblock %}
 
     <div class="main-content" id="panel">
 
-        {% include "includes/topnav.html" %}
-        <div class="header bg-primary pb-6">
-            <div class="container-fluid">
-                <div class="header-body">
-                    <div class="row align-items-center py-4">
-                        <div class="col-lg-6 col-7">
-                            {% block breadcrumb_items %}
-                            {% endblock %}
-                        </div>
-                        <div class="col-lg-6 col-5 text-right">
-                            <a href="#" class="btn btn-sm btn-neutral">Reload</a>
-                        </div>
-                    </div>
+        {% block intern_content %}
 
-                    {% block breadcrumb_content %}
-
-                    {% endblock %}
-
-                </div>
-            </div>
-        </div>
+        {% endblock %}
 
         {% block content %}
 
