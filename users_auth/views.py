@@ -3,7 +3,7 @@ import requests
 import operator
 
 from furl import furl
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 
 from decouple import config
 
@@ -232,3 +232,8 @@ class ProfileReport(ListView):
             'jobs': self.object_list
         })
         return self.render_to_response(self.context)
+
+
+class Profile(TemplateView):
+    template_name = "profile.html"
+    context = {}
