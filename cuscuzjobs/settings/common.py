@@ -21,8 +21,9 @@ PROJECT_APPS = [
     'job',
     'core',
     'company',
+    'language',
     'repository',
-    'users_auth',
+    'users_auth'
 ]
 
 THIRD_PARTY_APPS = [

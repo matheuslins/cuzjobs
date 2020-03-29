@@ -8,5 +8,6 @@ urlpatterns = [
     path("", login, name="account_login"),
     path('auth/', include(('users_auth.urls', 'users_auth'), namespace='auth')),
     path('job/', include(('job.urls', 'users_auth'), namespace='job')),
+    path('language/', include(('language.urls', 'language'), namespace='language')),
     path('admin/', admin.site.urls)
 ]
