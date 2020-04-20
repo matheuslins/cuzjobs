@@ -131,7 +131,6 @@ class DashboardView(ListView):
             else:
                 middle_score = 0
             score_languages.update({lang: middle_score})
-            # if repository isn't forked
             if not repo['fork']:
                 self.languages_infos.setdefault(lang, []).append(middle_score)
 
@@ -158,10 +157,9 @@ class DashboardView(ListView):
                 self.languages_infos = {}
                 for repo in repos_user:
                     if not repo.fork:
-                        languages_stats = repo.score_languages
                         [
                             self.languages_infos.setdefault(language, []).append(stat)
-                            for language, stat in languages_stats.items()
+                            for language, stat in repo.score_languages.items()
                         ]
 
             self.context.update(self.get_top_language())

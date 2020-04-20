@@ -23,18 +23,17 @@ class LanguagesListView(ListView):
 
 class LanguagesDetailView(DetailView):
     template_name = "detail.html"
+    slug_url_kwarg = 'language'
     context = {}
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.object_list = self._queryset()
+    def __init__(self, *arg, **kwargs):
+        super().__init__(*arg, **kwargs)
 
-    @staticmethod
-    def _queryset():
-        return Language.objects.all()
+    def _queryset(self, language):
+        return Language.objects.get(key=language)
 
     def get(self, request, *args, **kwargs):
         self.context.update({
-            'languages': self.object_list
+            'language': self._queryset(kwargs['language'])
         })
         return self.render_to_response(self.context)
