@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.auth.decorators import login_required
 
 from .views import CreateJobAPI, AllJobsHandler, RetrieveUpdateJobAPI, JobsNextToYouHandler
 
@@ -6,22 +7,22 @@ from .views import CreateJobAPI, AllJobsHandler, RetrieveUpdateJobAPI, JobsNextT
 urlpatterns = [
     path(
         '<int:job_id>',
-        RetrieveUpdateJobAPI.as_view(),
+        login_required(RetrieveUpdateJobAPI.as_view()),
         name='retrieve_update'
     ),
     path(
         'create/',
-        CreateJobAPI.as_view(),
+        login_required(CreateJobAPI.as_view()),
         name='create'
     ),
     path(
         'all-jobs/',
-        AllJobsHandler.as_view(),
+        login_required(AllJobsHandler.as_view()),
         name='all_jobs'
     ),
     path(
         'next-to-you/',
-        JobsNextToYouHandler.as_view(),
+        login_required(JobsNextToYouHandler.as_view()),
         name='next_to_you'
     )
 ]
