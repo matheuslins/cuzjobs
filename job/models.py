@@ -7,8 +7,8 @@ from users_auth.models import Candidate
 
 class Job(models.Model):
     job_id = models.IntegerField()
-    _type = models.CharField(max_length=100, verbose_name='Type',
-                             null=True, blank=True)
+    job_type = models.CharField(max_length=100, verbose_name='Type',
+                                null=True, blank=True)
     title = models.CharField(max_length=100, verbose_name='Title')
     company = models.ForeignKey(
         Company,
