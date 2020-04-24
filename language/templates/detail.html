@@ -14,7 +14,7 @@
           <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
           <li class="breadcrumb-item"><a href="{% url 'auth:dashboard' %}">Dashboard</a></li>
           <li class="breadcrumb-item"><a href="{% url 'language:list' %}">Languages</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{ language.name }}</li>
+          <li class="breadcrumb-item active" aria-current="page">{{ language.name|default:"Language" }}</li>
         </ol>
       </nav>
 {% endblock %}

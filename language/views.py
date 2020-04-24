@@ -30,7 +30,7 @@ class LanguagesDetailView(DetailView):
         super().__init__(*arg, **kwargs)
 
     def _queryset(self, language):
-        return Language.objects.get(key=language)
+        return Language.objects.filter(key=language).first()
 
     def get(self, request, *args, **kwargs):
         self.context.update({
