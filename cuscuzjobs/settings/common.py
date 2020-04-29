@@ -69,7 +69,7 @@ AUTHENTICATION_BACKENDS = (
 # AUTH
 AUTH_USER_MODEL = 'users_auth.DefaultUser'
 
-SITE_ID = 3
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
