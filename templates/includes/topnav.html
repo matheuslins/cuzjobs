@@ -1,4 +1,7 @@
-<nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+{% load static %}
+
+{% for account in user.socialaccount_set.all %}
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Search form -->
@@ -99,7 +102,11 @@
                        aria-expanded="false">
                         <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="https://avatars1.githubusercontent.com/u/7929562?s=400&u=43c9f34df2a8310ba1e1628ec4467d7c61c48cd1&v=4.jpg">
+                      {% if account.extra_data %}
+                        <img alt="Image placeholder" src="{{ account.get_avatar_url }}">
+                      {% else %}
+                        <img alt="Image placeholder" src="{% static 'assets/img/user/profile1x.png' %}">
+                      {% endif %}
                   </span>
                             <div class="media-body  ml-2  d-none d-lg-block">
                                 <span class="mb-0 text-sm  font-weight-bold">{{ user.username }}</span>
@@ -129,3 +136,4 @@
         </div>
     </div>
 </nav>
+{% endfor %}
