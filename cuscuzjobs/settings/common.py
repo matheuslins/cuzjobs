@@ -69,7 +69,7 @@ AUTHENTICATION_BACKENDS = (
 # AUTH
 AUTH_USER_MODEL = 'users_auth.DefaultUser'
 
-SITE_ID = 3
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -119,11 +119,14 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 5000
 # LOGIN
 LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = 'auth:dashboard'
+
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
-
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # REST
 REST_FRAMEWORK = {

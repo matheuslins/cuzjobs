@@ -53,13 +53,17 @@ class DefaultUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField('É da equipe?', blank=True, default=False)
     date_joined = models.DateTimeField('Data de Entrada', auto_now_add=True)
 
-    objects = UserManager()
-
-    REQUIRED_FIELDS = ['name']
     USERNAME_FIELD = 'email'
+    EMAIL_FIELD = 'email'
+    REQUIRED_FIELDS = ['username', 'name']
+
+    objects = UserManager()
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return f"/users/{self.pk}/"
 
     def get_full_name(self):
         # The user is identified by their email address
