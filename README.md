@@ -1,4 +1,7 @@
-# cuscuzjobs
-A platform where you can find the best jobs opportunity according your github profile
+# CuscusJobs
+The platform where you can find the best jobs opportunity according your github profile
 
-## Warning! This app is under construction
+![Kibana Jobs Dashboard](media/assets/img/dashboard.png)
+
+Enjoy: https://cuscuzjobs.herokuapp.com/
+ 
