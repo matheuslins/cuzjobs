@@ -3,7 +3,7 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-import users_auth.models
+import apps.users_auth.models
 
 
 class Migration(migrations.Migration):
@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Usuários',
             },
             managers=[
-                ('objects', users_auth.models.UserManager()),
+                ('objects', apps.users_auth.models.UserManager()),
             ],
         ),
         migrations.CreateModel(
@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
             },
             bases=('users_auth.defaultuser',),
             managers=[
-                ('objects', users_auth.models.UserManager()),
+                ('objects', apps.users_auth.models.UserManager()),
             ],
         ),
         migrations.CreateModel(
@@ -67,7 +67,7 @@ class Migration(migrations.Migration):
             },
             bases=('users_auth.defaultuser',),
             managers=[
-                ('objects', users_auth.models.UserManager()),
+                ('objects', apps.users_auth.models.UserManager()),
             ],
         ),
     ]

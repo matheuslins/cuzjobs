@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView
-from language.models import Language
+from apps.language.models import Language
 
 
 class LanguagesListView(ListView):

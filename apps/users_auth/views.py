@@ -7,9 +7,9 @@ from django.views.generic import ListView, TemplateView
 
 from decouple import config
 
-from job.models import Job
-from repository.models import Repository, Owner
-from core.constants import REPOS_URL, COUNT_FILES_URL
+from apps.job.models import Job
+from apps.repository.models import Repository, Owner
+from apps.core.constants import REPOS_URL, COUNT_FILES_URL
 
 
 class DashboardView(ListView):
