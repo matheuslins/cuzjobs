@@ -93,7 +93,7 @@ class DashboardView(ListView):
         jobs_by_languages = {}
         languages = self.context['top_languages']
         for language in languages:
-            jobs_found = Job.objects.filter(technologies__contains=[language[0].lower()])
+            jobs_found = Job.objects.filter(technologies__contains=[language[0].lower()]).order_by('-date_created')[:3]
             [jobs_by_languages.setdefault(language[0], []).append(job) for job in jobs_found]
         filter_query_set = {'jobs_by_languages': jobs_by_languages}
         self.context.update(filter_query_set)
@@ -106,8 +106,11 @@ class DashboardView(ListView):
             score_lang = sum(numbers)
             result = {language: (score_lang, len(numbers))}
             top_languages.update(result)
+
+        sorted_languages = list(sorted(top_languages.items(), key=operator.itemgetter(1), reverse=True))
+
         return {
-            'top_languages': list(sorted(top_languages.items(), key=operator.itemgetter(1), reverse=True))[:4]
+            'top_languages': sorted_languages[:4]
         }
 
     def iter_by_lang_repo(self, languages_stats, user, repo):
