@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework import generics
 from django.views.generic import ListView
 
-from core.mixins import CreateListMixin
+from apps.core.mixins import CreateListMixin
 from .serializer import JobSerializer
 from .models import Job
 from .utils import create_object_from_field

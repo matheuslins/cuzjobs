@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
-from company.models import Company
-from users_auth.models import Candidate
+from apps.company.models import Company
+from apps.users_auth.models import Candidate
 
 
 class Job(models.Model):

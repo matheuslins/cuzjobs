@@ -18,12 +18,12 @@ DEFAULT_APPS = [
 ]
 
 PROJECT_APPS = [
-    'job',
-    'core',
-    'company',
-    'language',
-    'repository',
-    'users_auth'
+    'apps.job',
+    'apps.core',
+    'apps.company',
+    'apps.language',
+    'apps.repository',
+    'apps.users_auth'
 ]
 
 THIRD_PARTY_APPS = [

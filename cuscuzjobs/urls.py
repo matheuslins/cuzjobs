@@ -8,9 +8,9 @@ from cuscuzjobs.settings.common import MEDIA_ROOT, MEDIA_URL
 urlpatterns = [
     path('', include('allauth.urls')),
     path('', login, name="account_login"),
-    path('auth/', include(('users_auth.urls', 'users_auth'), namespace='auth')),
-    path('job/', include(('job.urls', 'users_auth'), namespace='job')),
-    path('languages/', include(('language.urls', 'language'), namespace="language")),
+    path('auth/', include(('apps.users_auth.urls', 'apps.users_auth'), namespace='auth')),
+    path('job/', include(('apps.job.urls', 'apps.users_auth'), namespace='job')),
+    path('languages/', include(('apps.language.urls', 'apps.language'), namespace="language")),
     path('admin/', admin.site.urls)
 ]
 

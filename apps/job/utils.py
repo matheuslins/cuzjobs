@@ -1,4 +1,4 @@
-from company.models import Company
+from apps.company.models import Company
 
 
 def create_object_from_field(data, fields):
